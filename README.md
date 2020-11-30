@@ -4,10 +4,8 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Team-Rough-Puffs/questions-and-answers
+  - https://github.com/Team-Rough-Puffs/legacy-fec-codebase
 
 ## Table of Contents
 
