@@ -1,12 +1,18 @@
 const Client = require('pg').Client;
 const pgConfig = require('./config.js');
 
-const client = new Client(pgConfig);
+const connection = new Client(pgConfig);
 
-client.connect();
+connection.connect();
 
-const getReviews = () => {
-
+const getReviews = (count, productId, callback) => {
+  connection.query('SELECT ? FROM reviews WHERE product_id = ?', [count, productId], (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  });
 };
 
 const getMeta = () => {

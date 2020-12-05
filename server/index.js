@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+const db = require('../database/index');
 
 app.use(express.json());
 
@@ -13,7 +14,7 @@ app.get('/reviews', (req, res) => {
   var count = req.params.count;
   var sort = req.params.sort;
   var productId = req.params.product_id;
-  client.query(`SELECT ${count} FROM reviews WHERE product_id = ${productId} ORDER BY ${sort} DESC`, (err, results) => {
+  db.query(`SELECT ${count} FROM reviews WHERE product_id = ${productId} ORDER BY ${sort} DESC`, (err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
