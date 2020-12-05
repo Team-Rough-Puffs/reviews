@@ -1,0 +1,33 @@
+{
+  "product_id": "1",
+  "ratings": {
+      "1": 1,
+      "2": 2,
+      "3": 23,
+      "4": 7,
+      "5": 8
+  },
+  "recommended": {
+      "0": 15,
+      "1": 25,
+      "null": 1
+  },
+  "characteristics": {
+      "Fit": {
+          "id": 1,
+          "value": "2.3000"
+      },
+      "Length": {
+          "id": 2,
+          "value": "2.3810"
+      },
+      "Comfort": {
+          "id": 3,
+          "value": "2.5714"
+      },
+      "Quality": {
+          "id": 4,
+          "value": "2.5238"
+      }
+  }
+}

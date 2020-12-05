@@ -1,0 +1,31 @@
+{
+  "product": "1",
+  "page": 0,
+  "count": 5,
+  "results": [
+      {
+          "review_id": 57471,
+          "rating": 3,
+          "summary": "I can't believe no one noticed",
+          "recommend": 0,
+          "response": null,
+          "body": "These brand new, fresh, just made, hot and ready, shoes",
+          "date": "2020-11-29T00:00:00.000Z",
+          "reviewer_name": "LookAtMyShoes",
+          "helpfulness": 48,
+          "photos": []
+      },
+      {
+          "review_id": 57487,
+          "rating": 5,
+          "summary": "yup",
+          "recommend": 1,
+          "response": null,
+          "body": "",
+          "date": "2020-11-30T00:00:00.000Z",
+          "reviewer_name": "Robert",
+          "helpfulness": 0,
+          "photos": []
+      }
+  ]
+}
