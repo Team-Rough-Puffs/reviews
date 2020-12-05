@@ -10,11 +10,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var count = req.params.count;
-  var productId = req.params.product_id;
+  var count = req.query.count;
+  var productId = req.query.product_id;
   db.getReviews(count, productId, (err, results) => {
     if (err) {
-      res.status(500).send(err); //SEND ERR ONLY FOR TESTING PURPOSES. DO NOT SEND THE ENTIRE ERR BACK IRL
+      res.status(500).send(err);
+      console.log(count, productId); //SEND ERR ONLY FOR TESTING PURPOSES. DO NOT SEND THE ENTIRE ERR BACK IRL
     } else {
       res.send(results);
     }

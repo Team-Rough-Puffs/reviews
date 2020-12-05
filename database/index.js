@@ -1,18 +1,23 @@
-const Client = require('pg').Client;
-const pgConfig = require('./config.js');
+var pgp = require('pg-promise')(/*options*/);
 
-const connection = new Client(pgConfig);
+var db = pgp('postgres://postgres:pass@localhost:5432/reviews');
 
-connection.connect();
+// db.one('SELECT $1 AS value', 123)
+//   .then(function (data) {
+//     console.log('DATA:', data.value);
+//   })
+//   .catch(function (error) {
+//     console.log('ERROR:', error);
+//   });
 
 const getReviews = (count, productId, callback) => {
-  connection.query('SELECT ? FROM reviews WHERE product_id = ?', [count, productId], (err, results) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, results);
-    }
-  });
+  db.query('SELECT * FROM reviews WHERE product_id = $1 limit $2', [productId, count])
+    .then(results => {
+      callback(results);
+    })
+    .catch(error => {
+      callback('ERROR: ', error);
+    });
 };
 
 const getMeta = () => {
