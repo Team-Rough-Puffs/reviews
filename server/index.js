@@ -10,15 +10,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var page = req.params.page;
   var count = req.params.count;
-  var sort = req.params.sort;
   var productId = req.params.product_id;
-  db.query(`SELECT ${count} FROM reviews WHERE product_id = ${productId} ORDER BY ${sort} DESC`, (err, results) => {
+  db.getReviews(count, productId, (err, results) => {
     if (err) {
-      res.status(500).send(err);
+      res.status(500).send(err); //SEND ERR ONLY FOR TESTING PURPOSES. DO NOT SEND THE ENTIRE ERR BACK IRL
     } else {
-      res.status(200).send(results);
+      res.send(results);
     }
   });
 });
