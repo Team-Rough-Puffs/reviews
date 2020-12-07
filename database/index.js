@@ -44,8 +44,14 @@ const addHelpful = (reviewId, callback) => {
     });
 };
 
-const reportReview = () => {
-
+const reportReview = (reviewId) => {
+  db.query('UPDATE reviews SET reported = true WHERE reviewId = $1', reviewId)
+    .then(resluts => {
+      callback(results);
+    })
+    .catch(error => {
+      callback('ERROR: ', error);
+    });
 };
 
 module.exports = {

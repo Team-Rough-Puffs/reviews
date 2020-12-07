@@ -54,12 +54,25 @@ app.post('/reviews', (req, res) => {
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
   var reviewId = req.query.review_id;
-
+  db.addHelpful(reviewId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('review marked helpful');
 });
 
 app.put('/reviews/:review_id/report', (req, res) => {
   var reviewId = req.query.review_id;
+  db.reportReview(reviewId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('reported');
 });
 
