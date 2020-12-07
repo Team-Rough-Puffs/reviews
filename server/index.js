@@ -33,15 +33,22 @@ app.get('/reviews/meta', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  var page = req.query.page;
-  var rating = req.query.rating;
-  var summary = req.query.summary;
-  var body = req.query.body;
-  var recommend = req.query.recommend;
-  var name = req.query.name;
-  var email = req.query.email;
-  var photos = req.query.photos;
-  var characteristics = req.query.characteristics;
+  var productId = req.body.product_id;
+  var rating = req.body.rating;
+  var summary = req.body.summary;
+  var body = req.body.body;
+  var recommend = req.body.recommend;
+  var name = req.body.name;
+  var email = req.body.email;
+  var photos = req.body.photos;
+  var characteristics = req.body.characteristics;
+  db.addReview(productId, rating, summary, body, recommend, name, email, photos, characteristics, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('review posted');
 });
 
