@@ -10,12 +10,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var count = req.query.count;
   var productId = req.query.product_id;
-  db.getReviews(count, productId, (err, results) => {
+  db.getReviews(productId, (err, results) => {
     if (err) {
       res.status(500).send(err);
-      console.log(count, productId); //SEND ERR ONLY FOR TESTING PURPOSES. DO NOT SEND THE ENTIRE ERR BACK IRL
     } else {
       res.send(results);
     }
@@ -23,31 +21,31 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/reviews/meta', (req, res) => {
-  var productId = req.params.product_id;
+  var productId = req.query.product_id;
   res.status(200).send('meta goes here');
 });
 
 app.post('/reviews', (req, res) => {
-  var page = req.params.page;
-  var rating = req.params.rating;
-  var summary = req.params.summary;
-  var body = req.params.body;
-  var recommend = req.params.recommend;
-  var name = req.params.name;
-  var email = req.params.email;
-  var photos = req.params.photos;
-  var characteristics = req.params.characteristics;
+  var page = req.query.page;
+  var rating = req.query.rating;
+  var summary = req.query.summary;
+  var body = req.query.body;
+  var recommend = req.query.recommend;
+  var name = req.query.name;
+  var email = req.query.email;
+  var photos = req.query.photos;
+  var characteristics = req.query.characteristics;
   res.status(200).send('review posted');
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
-  var reviewId = req.params.review_id;
+  var reviewId = req.query.review_id;
 
   res.status(200).send('review marked helpful');
 });
 
 app.put('/reviews/:review_id/report', (req, res) => {
-  var reviewId = req.params.review_id;
+  var reviewId = req.query.review_id;
   res.status(200).send('reported');
 });
 

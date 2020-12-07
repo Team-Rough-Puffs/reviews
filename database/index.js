@@ -10,8 +10,8 @@ var db = pgp('postgres://postgres:pass@localhost:5432/reviews');
 //     console.log('ERROR:', error);
 //   });
 
-const getReviews = (count, productId, callback) => {
-  db.query('SELECT * FROM reviews WHERE product_id = $1 limit $2', [productId, count])
+const getReviews = (productId, callback) => {
+  db.query('SELECT * FROM reviews WHERE product_id = $1', productId)
     .then(results => {
       callback(results);
     })
@@ -25,7 +25,7 @@ const getMeta = () => {
 };
 
 const addReview = () => {
-
+  db.query('')
 };
 
 const addHelpful = () => {

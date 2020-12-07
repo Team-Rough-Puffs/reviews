@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js -w server"
+    "start": "nodemon server/index.js -w server",
+    "seed": "psql -U postgres -d reviews < schema.sql"
   },
   "dependencies": {
     "express": "^4.17.1",
