@@ -59,3 +59,14 @@ COPY review_photos(photo_id, review_id, photo_url)
 FROM '/Users/kelakealakai/work/reviews/csv-files/reviews_photos.csv'
 DELIMITER ','
 CSV HEADER;
+
+-- TODO: create meta table:
+-- product_id
+-- ratings:
+  -- object with rating number out of 5 and number of ratings given to each
+-- recommended:
+  -- number of reviews who recommended vs did not
+-- characteristics
+  -- name
+    -- char_id
+    -- avg of all values for review of this characteristic

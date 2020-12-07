@@ -20,9 +20,16 @@ app.get('/reviews', (req, res) => {
   });
 });
 
+// TODO: add results back in once meta table is made
 app.get('/reviews/meta', (req, res) => {
   var productId = req.query.product_id;
-  res.status(200).send('meta goes here');
+  db.getMeta(productId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send('i got your meta right here buddy: ');
+    }
+  });
 });
 
 app.post('/reviews', (req, res) => {
