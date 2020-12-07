@@ -6,8 +6,6 @@ CREATE DATABASE reviews;
 
 DROP TABLE IF EXISTS characteristics, reviews, characteristics_reviews, review_photos CASCADE;
 
--- TODO: drop all tables at once?
-
 CREATE TABLE characteristics (
  characteristics_id SERIAL PRIMARY KEY,
  product_id INT,
