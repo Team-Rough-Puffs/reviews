@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const db = require('../database/index');
+const token = 'loaderio-aae92af1cda903a31cf76c29e7129dac';
 
 app.use(express.json());
 
@@ -15,7 +16,7 @@ app.get('/reviews', (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(results);
+      res.status(201).send(results);
     }
   });
 });
@@ -27,7 +28,7 @@ app.get('/reviews/meta', (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send('i got your meta right here buddy: ');
+      res.send(results);
     }
   });
 });
