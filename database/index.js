@@ -5,20 +5,19 @@ var db = pgp('postgres://postgres:pass@localhost:5432/reviews');
 const getReviews = (productId, callback) => {
   db.query('SELECT * FROM reviews WHERE product_id = $1', productId)
     .then(results => {
-      callback(results);
+      callback(null, results);
     })
     .catch(error => {
       callback('ERROR: ', error);
     });
 };
-
+// TODO: chain db query vs join method
 /*
 TODO: add in photo object which is queried THUSLY:
-(SELECT photo_url FROM review_photos WHERE review_id IN
+(SELECT photo_url, photo_id FROM review_photos WHERE review_id IN
   (SELECT review_id
     FROM reviews
     WHERE product_id = $2'), productId
-TODO: how to get photo_url AND photo_id back from this query??
 */
 
 const getMeta = (productId) => {

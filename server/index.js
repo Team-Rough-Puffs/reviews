@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const db = require('../database/index');
-const token = 'loaderio-aae92af1cda903a31cf76c29e7129dac';
 
 app.use(express.json());
 
