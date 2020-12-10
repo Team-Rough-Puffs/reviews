@@ -1,0 +1,20 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+    - duration: 600
+      arrivalRate: 50
+      name: Sustained load
+scenarios:
+  # We define one scenario:
+  - name: "get all reviews for product"
+    flow:
+      # Get the details of the product:
+      - get:
+          url: "/reviews?product_id=1"

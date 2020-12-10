@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+const db = require('../database/index');
 
 app.use(express.json());
 
@@ -9,45 +10,69 @@ app.get('/', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
-  var page = req.params.page;
-  var count = req.params.count;
-  var sort = req.params.sort;
-  var productId = req.params.product_id;
-  client.query(`SELECT ${count} FROM reviews WHERE product_id = ${productId} ORDER BY ${sort} DESC`, (err, results) => {
+  var productId = req.query.product_id;
+  db.getReviews(productId, (err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).send(results);
+      res.status(201).send(results);
     }
   });
 });
 
+// TODO: add results back in once meta table is made
 app.get('/reviews/meta', (req, res) => {
-  var productId = req.params.product_id;
-  res.status(200).send('meta goes here');
+  var productId = req.query.product_id;
+  db.getMeta(productId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
 });
 
 app.post('/reviews', (req, res) => {
-  var page = req.params.page;
-  var rating = req.params.rating;
-  var summary = req.params.summary;
-  var body = req.params.body;
-  var recommend = req.params.recommend;
-  var name = req.params.name;
-  var email = req.params.email;
-  var photos = req.params.photos;
-  var characteristics = req.params.characteristics;
+  var productId = req.body.product_id;
+  var rating = req.body.rating;
+  var summary = req.body.summary;
+  var body = req.body.body;
+  var recommend = req.body.recommend;
+  var name = req.body.name;
+  var email = req.body.email;
+  var photos = req.body.photos;
+  var characteristics = req.body.characteristics;
+  db.addReview(productId, rating, summary, body, recommend, name, email, photos, characteristics, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('review posted');
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
-  var reviewId = req.params.review_id;
-
+  var reviewId = req.query.review_id;
+  db.addHelpful(reviewId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('review marked helpful');
 });
 
 app.put('/reviews/:review_id/report', (req, res) => {
-  var reviewId = req.params.review_id;
+  var reviewId = req.query.review_id;
+  db.reportReview(reviewId, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(results);
+    }
+  });
   res.status(200).send('reported');
 });
 

@@ -29,3 +29,6 @@ dist/
 
 # Database config info
 config.js
+
+# AWS key
+*.pem

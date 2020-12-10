@@ -8,13 +8,19 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js -w server"
+    "start": "nodemon server/index.js -w server",
+    "seed": "psql -U postgres -d reviews < schema.sql",
+    "build meta": "psql -U postgres -d reviews < meta.sql",
+    "load-test": "artillery run getReviews.yml"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "pg": "^8.5.1"
+    "newrelic": "^7.0.2",
+    "pg": "^8.5.1",
+    "pg-promise": "^10.8.1"
   },
   "devDependencies": {
+    "artillery": "^1.6.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
   }
 }
